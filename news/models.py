@@ -5,20 +5,27 @@ class Editor(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
+    phone_number = models.CharField(max_length = 10,blank =True)
     
+   
+    
+    class Meta:
+        verbose_name_plural = 'Editors'
+        ordering = ('first_name',)
+        
     def __str__(self):
-        return self.first_name
+            return self.first_name
     
     def save_editor(self):
         self.save()
-    
-    class Meta:
-        ordering = ('first_name',)
-    
+            
 class tags(models.Model):
     name  = models.CharField(max_length=30)
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = 'tags'
     
 # one to many relationship
 class Article(models.Model):
@@ -33,5 +40,8 @@ class Article(models.Model):
     
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name_plural = 'Articles'
     
 # many to many relationships
