@@ -1,4 +1,6 @@
 from django.db import models
+import datetime as dt
+
 
 # Create your models here.
 class Editor(models.Model):
@@ -6,8 +8,6 @@ class Editor(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     phone_number = models.CharField(max_length = 10,blank =True)
-    
-   
     
     class Meta:
         verbose_name_plural = 'Editors'
@@ -35,8 +35,21 @@ class Article(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(tags)
     
+    
     def save_article(self):
         self.save()
+    
+    @classmethod
+    def today_news(cls):
+        today = dt.date.today()
+        news = cls.objects.filter(pub_date__date = today)
+        return news    
+
+    @classmethod
+    def days_news(cls, date):
+        news = cls.objects.filter(pub_date__date = date)
+        return news
+
     
     def __str__(self):
         return self.title

@@ -16,9 +16,8 @@ Including another URLconf
 # re_path -- regex exp
 from django.contrib import admin
 from django.urls import re_path as url, include
-from django.urls import include
 
 urlpatterns = [
-    url('^admin/', admin.site.urls),
-    url('^news/', include('news.urls'))
+    url(r'^admin/', admin.site.urls),
+    url(r'', include('news.urls'))
 ]
