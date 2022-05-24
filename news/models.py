@@ -8,6 +8,10 @@ class Editor(models.Model):
     
     def __str__(self):
         return self.first_name
+    
+    def save_editor(self):
+        self.save()
+    
     class Meta:
         ordering = ('first_name',)
     
@@ -23,6 +27,9 @@ class Article(models.Model):
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(tags)
+    
+    def save_article(self):
+        self.save()
     
     def __str__(self):
         return self.title
