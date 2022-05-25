@@ -49,15 +49,6 @@ class ArticleTestClass(TestCase):
         news_by_date = Article.days_news(date)
         self.assertTrue(len(news_by_date) == 0)
                 
-    
-    
-    # def test_instance(self):
-    #     self.assertTrue(isinstance(self.new_article, Article))
-        
-    # def test_save_method(self):
-    #     self.new_article.save_article()
-    #     articles = Article.objects.all()
-    #     self.assertTrue(len(articles)> 0)
         
 #running tests
 # python3 manage.py test news

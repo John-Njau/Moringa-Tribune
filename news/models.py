@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 import datetime as dt
 
@@ -34,10 +35,16 @@ class Article(models.Model):
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(tags)
-    
+    article_image = models.ImageField(upload_to = 'articles/')
     
     def save_article(self):
         self.save()
+        
+    #method that queries the database and returns the results
+    @classmethod
+    def search_by_title(cls, search_term):
+        news = cls.objects.filter(title__icontains=search_term)
+        return news
     
     @classmethod
     def today_news(cls):
